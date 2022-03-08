@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   CButton,
@@ -12,19 +12,11 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-  CNav,
-  CTabContent,
-  CModal,
-  CModalHeader,
-  CModalBody,
-  CModalFooter,
-  CModalTitle,
 } from '@coreui/react'
 
 import axios from '../../../axios'
+import { Link } from 'react-router-dom'
 
-import CIcon from '@coreui/icons-react'
-import * as icon from '@coreui/icons'
 function ListUser() {
   const [data_list, set_data_list] = useState([])
   const [visible, setVisible] = useState(false)
@@ -47,17 +39,6 @@ function ListUser() {
     setVisible(!visible)
   }
 
-  // axios
-  //   .get('users')
-  //   .then((response) => {
-  //     const data = response.data.data
-  //     set_data_list(data)
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error', error)
-  //   })
-
-  // carry out other logic below
   return (
     <>
       <CCard className="mb-4">
@@ -85,10 +66,12 @@ function ListUser() {
                         <CTableDataCell>{data.name}</CTableDataCell>
                         <CTableDataCell>{data.age}</CTableDataCell>
                         <CTableDataCell>
-                          <CButton onClick={handleDetail} value={data.userid}>
-                            Detail
-                          </CButton>
-                          <CModal visible={visible} onClose={() => setVisible(false)}>
+                          <Link to="detialuser">
+                            <CButton onClick={handleDetail} value={data.userid}>
+                              Detail
+                            </CButton>
+                          </Link>
+                          {/* <CModal visible={visible} onClose={() => setVisible(false)}>
                             <CModalHeader onClose={() => setVisible(false)}>
                               <CModalTitle>Detail User</CModalTitle>
                             </CModalHeader>
@@ -121,7 +104,7 @@ function ListUser() {
                                 Close
                               </CButton>
                             </CModalFooter>
-                          </CModal>
+                          </CModal> */}
                         </CTableDataCell>
                       </CTableRow>
                     )
